@@ -68,7 +68,7 @@ bool bool_false = false;
 // eventChannel end
 #pragma mark - 测试联网阿里授权必须
 -(void)httpAuthority{
-  NSURL *url = [NSURL URLWithString:@"https://www.baidu.com/"];//此处修改为自己公司的服务器地址
+  NSURL *url = [NSURL URLWithString:@"https://masia.tcqyhxy.top/"];//此处修改为自己公司的服务器地址
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   NSURLSession *session = [NSURLSession sharedSession];
   NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -93,7 +93,20 @@ bool bool_false = false;
   }
   else if ([@"getCurrentCarrierName" isEqualToString:call.method]) {
     // 获取当前上网卡运营商名称，比如中国移动、中国电信、中国联通
-    result([[TXCommonUtils init] getCurrentCarrierName]);
+    result([TXCommonUtils getCurrentCarrierName]);
+  }
+  else if ([@"simSupportedIsOK" isEqualToString:call.method]) {
+      BOOL isSupported = [TXCommonUtils simSupportedIsOK];
+      NSString *resultString = isSupported ? @"YES" : @"NO";
+      result(resultString);
+  }
+  else if ([@"getUniqueID" isEqualToString:call.method]) {
+      // 唯一id
+      result([TXCommonUtils getUniqueID]);
+  }
+  else if ([@"getMobilePrivateIPAddress" isEqualToString:call.method]) {
+      NSString *resultString = [TXCommonUtils getMobilePrivateIPAddress:YES];
+      result(resultString);
   }
   // 初始化SDK
   else if ([@"initSdk" isEqualToString:call.method]) {
