@@ -74,9 +74,9 @@ bool bool_false = false;
   NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
       if (error == nil) {
           // NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-          NSLog(@"Success！");
+          NSLog(@"Success!");
       } else {
-        NSLog(@"Failed！");
+        NSLog(@"Failed!");
       }
   }];
   
